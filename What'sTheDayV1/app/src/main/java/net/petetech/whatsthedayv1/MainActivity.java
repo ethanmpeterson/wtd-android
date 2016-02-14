@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     String p3Time;
     String p4Time;
 
+    String cdButton; //will store the text displayed on the change date depending on whether the date has been changed or not
+
     //create TextViews for each school class
 
     private TextView period1;
@@ -81,14 +83,17 @@ public class MainActivity extends AppCompatActivity {
         selectedDate = (TextView) findViewById(R.id.textView2);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
+        update();
+        changeDate.setText("Change Date");
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { //shows
+            public void onClick(View v) { //shows date picker when change date is pressed
+                if (dateChanged) {
+                    dateChanged = false;
+                }
                 new DatePickerDialog(MainActivity.this, listener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-        //call update here before adding text to fields to ensure what is displayed is up to date
         update();
 
         if (dayNum == 1 || dayNum == 2 || dayNum == 3 || dayNum == 4) {
@@ -103,20 +108,46 @@ public class MainActivity extends AppCompatActivity {
     }
     DatePickerDialog.OnDateSetListener listener = new OnDateSetListener() {
         @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            selectedDate.setText("Selected Date is: " +dayOfMonth + "/" + (monthOfYear+1) + "/" + year);
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) { //code runs when user sets the date
+            dayInput = dayOfMonth;
+            monthInput = monthOfYear + 1;
+            yearInput = year;
+            dateChanged = true;
+            update();
+            drawSchedule();
         }
     };
 
 
+        void drawSchedule() { //function that updates the schedule on screen revolving around the change date button
+            if (dayNum == 1 || dayNum == 2 || dayNum == 3 || dayNum == 4) {
+                period1.setText(p1 + p1Time);
+                period2.setText(p2 + p2Time);
+                period3.setText(p3 + p3Time);
+                period4.setText(p4 + p4Time);
+                day.setText("Day " + dayNum);
+            } else if (dayNum == 9) {
+                day.setText("It's a Holiday!");
+            }
+            if (dateChanged) {
+                changeDate.setText("Today");
+            }
+            if (!dateChanged) {
+                changeDate.setText("Change Date");
+            }
+        }
 
+      public void update() { //updates schedule and
 
-        void update() { //updates schedule and
-
-            month = c.get(Calendar.MONTH) + 1; //calendar retrieves month off by 1
-            dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-            weekday = c.get(Calendar.DAY_OF_WEEK); //will eventually be used to determine whether it is a weekend or not
-            dayNum = schoolYear[month - 1][dayOfMonth];
+            if (!dateChanged) {
+                month = c.get(Calendar.MONTH) + 1; //calendar retrieves month off by 1
+                dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+                weekday = c.get(Calendar.DAY_OF_WEEK); //will eventually be used to determine whether it is a weekend or not
+                dayNum = schoolYear[month - 1][dayOfMonth];
+            }
+            if (dateChanged) {
+                dayNum = schoolYear[monthInput - 1][dayInput];
+            }
             if (dayNum == 1) {
                 p1 = "Comm. Tech";
                 p2 = "Gym";
