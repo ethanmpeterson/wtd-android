@@ -26,7 +26,14 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Settings"></activity>
+        <activity
+            android:name=".Settings">
+            <intent-filter>
+                <action android:name="net.petetech.whatsthedayv1.Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
