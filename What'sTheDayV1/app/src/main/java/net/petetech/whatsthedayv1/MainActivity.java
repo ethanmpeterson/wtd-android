@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         update();
         drawSchedule();
     }
+
     DatePickerDialog.OnDateSetListener listener = new OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) { //code runs when user sets the date
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             if (month == 10 || monthInput == 10) {
                 return "October";
             }
-            if (month == 11 || monthInput == 10) {
+            if (month == 11 || monthInput == 11) {
                 return "November";
             }
             if (month == 12 || monthInput == 12) {
@@ -242,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
             //noinspection SimplifiableIfStatement
             if (id == R.id.action_settings) { //code runs if settings button is pressed
                 return true;
+
             }
 
             return super.onOptionsItemSelected(item);
