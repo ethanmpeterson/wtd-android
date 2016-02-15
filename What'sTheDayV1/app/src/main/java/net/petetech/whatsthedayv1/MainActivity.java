@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     String p3Time;
     String p4Time;
 
-
     //create TextViews for each school class
 
     private TextView period1;
@@ -69,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView period3;
     private TextView period4;
     private TextView day; //textView to display the dayNum
-    private TextView selectedDate; //will display the date the user has selected
     Button changeDate; //button to open second activity to change the date displayed
 
     @Override
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         period2 = (TextView) findViewById(R.id.p2View);
         period3 = (TextView) findViewById(R.id.p3View);
         period4 = (TextView) findViewById(R.id.p4View);
-        selectedDate = (TextView) findViewById(R.id.textView2);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
         update();
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     new DatePickerDialog(MainActivity.this, listener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
-                    Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_LONG).show(); //displays current date when user presses today button
+                    Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
                     drawSchedule();
                     changeDate.setText("Change Date");
                     dateChanged = false; //set bool back to false so date dialog comes back if user would
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             changeDate.setText("Today");
             update();
             drawSchedule();
-            Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -129,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
                 day.setText("Day " + dayNum);
             } else if (dayNum == 9) {
                 day.setText("It's a Holiday!");
-                period1.setText("");
-                period2.setText("");
-                period3.setText("");
-                period4.setText("");
+                period1.setText(null);
+                period2.setText(null);
+                period3.setText(null);
+                period4.setText(null);
             }
         }
 
