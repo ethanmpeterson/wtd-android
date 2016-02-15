@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.w3c.dom.Text;
@@ -47,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
     int monthInput; //ints to be assigned to date picker input
     int dayInput;
     int yearInput;
-    static final int DID = 0; //stores dialog id
-    boolean isWeekend; // will store whether it is the weekend or not
+    int cYear; //stores current year
     boolean dateChanged; //storing whether user has changed the date or not
     //create strings to be displayed for each class
     String p1;
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     new DatePickerDialog(MainActivity.this, listener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
+                    Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_LONG).show(); //displays current date when user presses today button
                     drawSchedule();
                     changeDate.setText("Change Date");
                     dateChanged = false; //set bool back to false so date dialog comes back if user would
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             changeDate.setText("Today");
             update();
             drawSchedule();
+            Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_LONG).show();
         }
     };
 
@@ -134,12 +136,53 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-      public void update() { //updates schedule and
+        String getMonth() {
+            if (month == 1 || monthInput == 1) {
+                return "January";
+            }
+            if (month == 2 || monthInput == 2) {
+                return "February";
+            }
+            if (month == 3 || monthInput == 3) {
+                return "March";
+            }
+            if (month == 4 || monthInput == 4) {
+                return "April";
+            }
+            if (month == 5 || monthInput == 5) {
+                return "May";
+            }
+            if (month == 6 || monthInput == 6) {
+                return "June";
+            }
+            if (month == 7 || monthInput == 7) {
+                return "July";
+            }
+            if (month == 8 || monthInput == 8) {
+                return "August";
+            }
+            if (month == 9 || monthInput == 9) {
+                return "September";
+            }
+            if (month == 10 || monthInput == 10) {
+                return "October";
+            }
+            if (month == 11 || monthInput == 10) {
+                return "November";
+            }
+            if (month == 12 || monthInput == 12) {
+                return "December";
+            }
+            return null;
+        }
+
+        public void update() { //updates schedule and
 
             if (!dateChanged) {
                 month = c.get(Calendar.MONTH) + 1; //calendar retrieves month off by 1
                 dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
                 weekday = c.get(Calendar.DAY_OF_WEEK); //will eventually be used to determine whether it is a weekend or not
+                cYear = c.get(Calendar.YEAR);
                 dayNum = schoolYear[month - 1][dayOfMonth];
             }
             if (dateChanged) {
