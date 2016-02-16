@@ -2,21 +2,17 @@ package net.petetech.whatsthedayv1;
 
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -92,9 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
+                    update();
                     drawSchedule();
                     changeDate.setText("Change Date");
-                    dateChanged = false; //set bool back to false so date dialog comes back if user would
+                    dateChanged = false; //set bool back to false so date dialog comes back if user would use change date button again
+
                 }
             }
         });
@@ -110,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             yearInput = year;
             dateChanged = true;
             changeDate.setText("Today");
+            dayNum = schoolYear[monthInput - 1][dayInput];
             update();
             drawSchedule();
             Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
@@ -181,12 +180,6 @@ public class MainActivity extends AppCompatActivity {
             weekday = c.get(Calendar.DAY_OF_WEEK); //will eventually be used to determine whether it is a weekend or not
             cYear = c.get(Calendar.YEAR);
             dayNum = schoolYear[month - 1][dayOfMonth];
-        }
-        if (dateChanged) {
-            month = c.get(Calendar.MONTH) + 1;
-            dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-            weekday = c.get(Calendar.DAY_OF_WEEK);
-            dayNum = schoolYear[monthInput - 1][dayInput];
         }
         if (dayNum == 1) {
             p1 = "Comm. Tech";

@@ -9,6 +9,6 @@ public class SetDay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_day);
-
+        setTitle("Day 1");
     }
 }
