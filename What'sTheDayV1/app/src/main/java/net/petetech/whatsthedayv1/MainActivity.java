@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     String p2Time;
     String p3Time;
     String p4Time;
-
+    String[] timeFrame; //string array storing time frames for each period in the school day
     //create TextViews for each school class
 
     private TextView period1;

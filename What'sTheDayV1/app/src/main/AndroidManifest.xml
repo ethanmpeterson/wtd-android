@@ -28,6 +28,8 @@
 
         <activity
             android:name=".Settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY" android:value="net.petetech.whatsthedayv1.MainActivity" />
             <intent-filter>
                 <action android:name="net.petetech.whatsthedayv1.Settings" />
 
