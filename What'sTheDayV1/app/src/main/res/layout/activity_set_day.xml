@@ -30,7 +30,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/p2Field"
         android:layout_below="@+id/p1Field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
@@ -39,8 +39,8 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_below="@+id/editText2"
+        android:id="@+id/p3Field"
+        android:layout_below="@+id/p2Field"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="34dp"
@@ -49,8 +49,8 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText"
+        android:id="@+id/p4Field"
+        android:layout_below="@+id/p3Field"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:hint="Period 4" />
@@ -58,11 +58,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Set Your Day 1 Classes Below:"
+        android:text="Set Day 1 Classes Below:"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+        android:textSize="35dp"
+        android:gravity="center" />
 
 </RelativeLayout>

@@ -15,7 +15,7 @@ public class SetDay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_day);
-        setTitle("Day 1");
+        setTitle("Day " + daySet); //add number of the day being set in action bar title
         next = (Button) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
