@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView period3;
     private TextView period4;
     private TextView day; //textView to display the dayNum
+    private TextView selectedDate;
     Button changeDate; //button to open second activity to change the date displayed
 
     @Override
@@ -76,9 +77,11 @@ public class MainActivity extends AppCompatActivity {
         period2 = (TextView) findViewById(R.id.p2View);
         period3 = (TextView) findViewById(R.id.p3View);
         period4 = (TextView) findViewById(R.id.p4View);
+        selectedDate = (TextView) findViewById(R.id.date);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
         update();
+        selectedDate.setText("Date Selected: " + getWeekDay() + ", " + getMonth() + dayOfMonth + cYear);
         changeDate.setText("Change Date");
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
+                    selectedDate.setText("Date Selected: " + getWeekDay() + ", " + getMonth() + dayOfMonth + cYear);
                     update();
                     drawSchedule();
                     changeDate.setText("Change Date");
@@ -168,6 +172,33 @@ public class MainActivity extends AppCompatActivity {
         }
         if (month == 12 || monthInput == 12) {
             return "December";
+        }
+        return null;
+    }
+
+    String getWeekDay() { //returns string of the weekday
+        //update weekday val
+        weekday = c.get(Calendar.DAY_OF_WEEK);
+        if (weekday == 1) {
+            return "Monday";
+        }
+        if (weekday == 2) {
+            return "Tuesday";
+        }
+        if (weekday == 3) {
+            return "Wednesday";
+        }
+        if (weekday == 4) {
+            return "Thursday";
+        }
+        if (weekday == 5) {
+            return "Friday";
+        }
+        if (weekday == 6) {
+            return "Saturday";
+        }
+        if (weekday == 7) {
+            return "Sunday";
         }
         return null;
     }
