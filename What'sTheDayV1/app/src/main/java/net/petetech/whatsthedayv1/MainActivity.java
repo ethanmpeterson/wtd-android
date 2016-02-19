@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     String p3Time;
     String p4Time;
 
+    String[][] schedule;
 
     private TextView period1;
     private TextView period2;

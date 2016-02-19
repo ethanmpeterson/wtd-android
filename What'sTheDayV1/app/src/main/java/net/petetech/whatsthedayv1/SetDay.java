@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Arrays;
-
 public class SetDay extends AppCompatActivity {
 
     //add next Button and text fields
@@ -43,6 +41,7 @@ public class SetDay extends AppCompatActivity {
                     Toast.makeText(SetDay.this, "Fill in all Classes", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(SetDay.this, "TEST", Toast.LENGTH_SHORT).show();
+                    daySet++; //increment dayset so that the next values put into array get their own row
                 }
             }
         });
