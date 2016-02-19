@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class SetDay extends AppCompatActivity {
 
     //add next Button and text fields
@@ -17,8 +19,7 @@ public class SetDay extends AppCompatActivity {
     private EditText p4;
     int daySet = 1; //storing the day number the user is setting (starts at day 1
 
-    //String array to store schedule input
-    String[][] schedule;
+    String schedule[][] = new String[5][5]; //make array 5x5 because of zero indexing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class SetDay extends AppCompatActivity {
                 //check here if all text boxes are filled and display setup for next day
                 if (schedule[daySet][1].equals("") || schedule[daySet][2].equals("") || schedule[daySet][3].equals("") || schedule[daySet][4].equals("")) {
                     Toast.makeText(SetDay.this, "Fill in all Classes", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(SetDay.this, "TEST", Toast.LENGTH_SHORT).show();
                 }
             }
         });
