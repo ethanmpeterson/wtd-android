@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
     String p2Time;
     String p3Time;
     String p4Time;
-    String[] timeFrame; //string array storing time frames for each period in the school day
-    //create TextViews for each school class
+
 
     private TextView period1;
     private TextView period2;
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
         update();
-        selectedDate.setText("Date Selected: " + getWeekDay() + ", " + getMonth() + dayOfMonth + cYear);
+        selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayOfMonth + " " + cYear);
         changeDate.setText("Change Date");
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
-                    selectedDate.setText("Date Selected: " + getWeekDay() + ", " + getMonth() + dayOfMonth + cYear);
+                    selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayOfMonth + " " + cYear);
                     update();
                     drawSchedule();
                     changeDate.setText("Change Date");
@@ -116,16 +115,17 @@ public class MainActivity extends AppCompatActivity {
             update();
             drawSchedule();
             Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
+            selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayInput + " " + year);
         }
     };
 
 
     public void drawSchedule() { //function that updates the schedule on screen revolving around the change date button
         if (dayNum == 1 || dayNum == 2 || dayNum == 3 || dayNum == 4) {
-            period1.setText(p1 + p1Time);
-            period2.setText(p2 + p2Time);
-            period3.setText(p3 + p3Time);
-            period4.setText(p4 + p4Time);
+            period1.setText("P1: " + p1 + p1Time);
+            period2.setText("P2: " + p2 + p2Time);
+            period3.setText("P3: " + p3 + p3Time);
+            period4.setText("P4: " + p4 + p4Time);
             day.setText("Day " + dayNum);
         } else if (dayNum == 9) {
             day.setText("It's a Holiday!");
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public void update() { //updates schedule and
+    public void update() { //updates schedule
 
         if (!dateChanged) {
             month = c.get(Calendar.MONTH) + 1; //calendar retrieves month off by 1
@@ -256,6 +256,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
