@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     int dayInput;
     int yearInput;
     int cYear; //stores current year
+    int timeFrame = 5; //will be used to access time frame row of the array
     boolean dateChanged; //storing whether user has changed the date or not
     //create strings to be displayed for each class
     String p1;
@@ -56,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
     String p3Time;
     String p4Time;
 
-    String[][] schedule;
-
+    String[][] schedule = new String[6][6]; //add extra space in array to store class time frames
     private TextView period1;
     private TextView period2;
     private TextView period3;
@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        p1Time = "  (8:15 AM - 9:30 AM)";
+        p2Time = "  (9:35 AM - 10:50 AM)";
+        p3Time = "  (11:15 AM - 12:30 PM)";
+        p4Time = "  (1:25 PM - 2:40 PM)";
         setTitle("What's The Day?");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawSchedule() { //function that updates the schedule on screen revolving around the change date button
         if (dayNum == 1 || dayNum == 2 || dayNum == 3 || dayNum == 4) {
-            period1.setText("P1: " + p1 + p1Time);
-            period2.setText("P2: " + p2 + p2Time);
-            period3.setText("P3: " + p3 + p3Time);
-            period4.setText("P4: " + p4 + p4Time);
+            period1.setText("P1: " + schedule[dayNum][1] + schedule[timeFrame][1]);
+            period2.setText("P2: " + schedule[dayNum][2] + schedule[timeFrame][2]);
+            period3.setText("P3: " + schedule[dayNum][3] + schedule[timeFrame][3]);
+            period4.setText("P4: " + schedule[dayNum][4] + schedule[timeFrame][4]);
             day.setText("Day " + dayNum);
         } else if (dayNum == 9) {
             day.setText("It's a Holiday!");
@@ -214,41 +218,34 @@ public class MainActivity extends AppCompatActivity {
             dayNum = schoolYear[month - 1][dayOfMonth];
         }
         if (dayNum == 1) {
-            p1 = "Comm. Tech";
-            p2 = "Gym";
-            p3 = "English";
-            p4 = "Instrumental";
+            schedule[dayNum][1] = "Comm. Tech";
+            schedule[dayNum][2] = "Gym";
+            schedule[dayNum][3] = "English";
+            schedule[dayNum][4] = "Instrumental";
         }
         if (dayNum == 2) {
-            p1 = "Science";
-            p2 = "Software";
-            p3 = "French";
-            p4 = "Math";
+            schedule[dayNum][1] = "Science";
+            schedule[dayNum][2] = "Software";
+            schedule[dayNum][3] = "French";
+            schedule[dayNum][4] = "Math";
         }
         if (dayNum == 3) {
-            p1 = "Instrumental";
-            p2 = "Gym";
-            p3 = "English";
-            p4 = "Comm. Tech";
+            schedule[dayNum][1] = "Instrumental";
+            schedule[dayNum][2] = "Gym";
+            schedule[dayNum][3] = "English";
+            schedule[dayNum][4] = "Comm. Tech";
         }
         if (dayNum == 4) {
-            p1 = "Math";
-            p2 = "Software";
-            p3 = "French";
-            p4 = "Science";
+            schedule[dayNum][1] = "Math";
+            schedule[dayNum][2] = "Software";
+            schedule[dayNum][3] = "French";
+            schedule[dayNum][4] = "Science";
         }
-        if (dayNum == 9) {
-            p1 = "H";
-            p2 = "H";
-            p3 = "H";
-            p4 = "H";
-        }
-
-        p1Time = "  (8:15 AM - 9:30 AM)";
-        p2Time = "  (9:35 AM - 10:50 AM)";
-        p3Time = "  (11:15 AM - 12:30 PM)";
-        p4Time = "  (1:25 PM - 2:40 PM)";
-
+        //setup time frame strings in array
+        schedule[timeFrame][1] = p1Time;
+        schedule[timeFrame][2] = p2Time;
+        schedule[timeFrame][3] = p3Time;
+        schedule[timeFrame][4] = p4Time;
     }
 
     @Override
