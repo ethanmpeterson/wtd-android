@@ -1,6 +1,7 @@
 package net.petetech.whatsthedayv1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -50,6 +51,9 @@ public class SetDay extends AppCompatActivity {
                     if (daySet == 4) { // If statement will be used to write new schedule to shared preference
                         saveSchedule();
                         Toast.makeText(SetDay.this, "Schedule Saved!", Toast.LENGTH_SHORT).show();
+                        Intent main; //Intent returns user to main activity
+                        main = new Intent("android.intent.action.MAIN");
+                        startActivity(main);
                     } else {
                         daySet++; //increment daySet so that the next values put into array get their own row
                         header.setText("Set Day " + daySet + " Classes Below:"); //set header text to instruct user to set their schedule for the next day
@@ -72,7 +76,7 @@ public class SetDay extends AppCompatActivity {
 
     public void saveSchedule() {
         //setup shared preference file for the users schedule;
-        SharedPreferences Schedule = getSharedPreferences("schedule", Context.MODE_PRIVATE);
+        SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = Schedule.edit(); //create instance of the editor object allowing the preferences to be edited
         //add day 1 schedule to file
         editor.putString("D1P1", schedule[1][1]); //first string passed into the function will be the naming scheme for the rest of the file day then period
@@ -97,5 +101,4 @@ public class SetDay extends AppCompatActivity {
         //write changes to file
         editor.apply();
     }
-
 }

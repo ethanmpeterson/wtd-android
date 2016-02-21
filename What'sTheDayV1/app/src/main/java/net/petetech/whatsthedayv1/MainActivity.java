@@ -3,7 +3,9 @@ package net.petetech.whatsthedayv1;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     int cYear; //stores current year
     int timeFrame = 5; //will be used to access time frame row of the array
     boolean dateChanged; //storing whether user has changed the date or not
+    boolean prefsAvailable; //true if there is a preferences file
     //create strings to be displayed for each class
     String p1;
     String p2;
@@ -84,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
         selectedDate = (TextView) findViewById(R.id.date);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
+        prefCheck();
         update();
-        selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayOfMonth + " " + cYear);
+        selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
         changeDate.setText("Change Date");
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
-                    selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayOfMonth + " " + cYear);
+                    selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
                     update();
                     drawSchedule();
                     changeDate.setText("Change Date");
@@ -116,11 +121,11 @@ public class MainActivity extends AppCompatActivity {
             yearInput = year;
             dateChanged = true;
             changeDate.setText("Today");
-            dayNum = schoolYear[monthInput - 1][dayInput];
+            dayNum = schoolYear[monthInput - 1][dayInput]; //get new dayNum based on the selected date
             update();
             drawSchedule();
             Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
-            selectedDate.setText(getWeekDay() + ", " + getMonth() + " " + dayInput + " " + year);
+            selectedDate.setText(getMonth() + " " + dayInput + ", " + year);
         }
     };
 
@@ -181,32 +186,6 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    String getWeekDay() { //returns string of the weekday
-        //update weekday val
-        weekday = c.get(Calendar.DAY_OF_WEEK);
-        if (weekday == 1) {
-            return "Monday";
-        }
-        if (weekday == 2) {
-            return "Tuesday";
-        }
-        if (weekday == 3) {
-            return "Wednesday";
-        }
-        if (weekday == 4) {
-            return "Thursday";
-        }
-        if (weekday == 5) {
-            return "Friday";
-        }
-        if (weekday == 6) {
-            return "Saturday";
-        }
-        if (weekday == 7) {
-            return "Sunday";
-        }
-        return null;
-    }
 
     public void update() { //updates schedule
 
@@ -217,35 +196,53 @@ public class MainActivity extends AppCompatActivity {
             cYear = c.get(Calendar.YEAR);
             dayNum = schoolYear[month - 1][dayOfMonth];
         }
-        if (dayNum == 1) {
-            schedule[dayNum][1] = "Comm. Tech";
-            schedule[dayNum][2] = "Gym";
-            schedule[dayNum][3] = "English";
-            schedule[dayNum][4] = "Instrumental";
+        if (!prefsAvailable) {
+            if (dayNum == 1) { //use my schedule if the user has not set their own
+                schedule[dayNum][1] = "Comm. Tech";
+                schedule[dayNum][2] = "Gym";
+                schedule[dayNum][3] = "English";
+                schedule[dayNum][4] = "Instrumental";
+            }
+            if (dayNum == 2) {
+                schedule[dayNum][1] = "Science";
+                schedule[dayNum][2] = "Software";
+                schedule[dayNum][3] = "French";
+                schedule[dayNum][4] = "Math";
+            }
+            if (dayNum == 3) {
+                schedule[dayNum][1] = "Instrumental";
+                schedule[dayNum][2] = "Gym";
+                schedule[dayNum][3] = "English";
+                schedule[dayNum][4] = "Comm. Tech";
+            }
+            if (dayNum == 4) {
+                schedule[dayNum][1] = "Math";
+                schedule[dayNum][2] = "Software";
+                schedule[dayNum][3] = "French";
+                schedule[dayNum][4] = "Science";
+            }
         }
-        if (dayNum == 2) {
-            schedule[dayNum][1] = "Science";
-            schedule[dayNum][2] = "Software";
-            schedule[dayNum][3] = "French";
-            schedule[dayNum][4] = "Math";
-        }
-        if (dayNum == 3) {
-            schedule[dayNum][1] = "Instrumental";
-            schedule[dayNum][2] = "Gym";
-            schedule[dayNum][3] = "English";
-            schedule[dayNum][4] = "Comm. Tech";
-        }
-        if (dayNum == 4) {
-            schedule[dayNum][1] = "Math";
-            schedule[dayNum][2] = "Software";
-            schedule[dayNum][3] = "French";
-            schedule[dayNum][4] = "Science";
+        if (prefsAvailable) {
+            // NOTE: put user inputted schedule here
+            SharedPreferences Schedule = PreferenceManager.getDefaultSharedPreferences(this);
+            //update schedule with contents of shared prefs file set by user
+
         }
         //setup time frame strings in array
         schedule[timeFrame][1] = p1Time;
         schedule[timeFrame][2] = p2Time;
         schedule[timeFrame][3] = p3Time;
         schedule[timeFrame][4] = p4Time;
+    }
+
+    private void prefCheck() { //checks if a shared preferences has been created
+        File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/schedule.xml");
+        //check for shared prefs file
+        if (prefs.exists()) {
+            prefsAvailable = true;
+        } else if (!prefs.exists()) {
+            prefsAvailable = false;
+        }
     }
 
     @Override
