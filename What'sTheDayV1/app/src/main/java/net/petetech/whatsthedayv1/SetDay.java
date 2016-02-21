@@ -1,5 +1,7 @@
 package net.petetech.whatsthedayv1;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -46,6 +48,8 @@ public class SetDay extends AppCompatActivity {
                     schedule[daySet][4] = p4.getText().toString();
                     Toast.makeText(SetDay.this, "Day " + daySet + " Set", Toast.LENGTH_SHORT).show();
                     if (daySet == 4) { // If statement will be used to write new schedule to shared preference
+                        saveSchedule();
+                        Toast.makeText(SetDay.this, "Schedule Saved!", Toast.LENGTH_SHORT).show();
                     } else {
                         daySet++; //increment daySet so that the next values put into array get their own row
                         header.setText("Set Day " + daySet + " Classes Below:"); //set header text to instruct user to set their schedule for the next day
@@ -66,6 +70,32 @@ public class SetDay extends AppCompatActivity {
         p4.setText("");
     }
 
-    private void saveDay(int dayNumber) {/* This function will be used later to save the user inputted schedule*/}
+    public void saveSchedule() {
+        //setup shared preference file for the users schedule;
+        SharedPreferences Schedule = getSharedPreferences("schedule", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = Schedule.edit(); //create instance of the editor object allowing the preferences to be edited
+        //add day 1 schedule to file
+        editor.putString("D1P1", schedule[1][1]); //first string passed into the function will be the naming scheme for the rest of the file day then period
+        editor.putString("D1P2", schedule[1][2]);
+        editor.putString("D1P3", schedule[1][3]);
+        editor.putString("D1P4", schedule[1][4]);
+        //day 2
+        editor.putString("D2P1", schedule[2][1]);
+        editor.putString("D2P2", schedule[2][2]);
+        editor.putString("D2P3", schedule[2][3]);
+        editor.putString("D2P4", schedule[2][4]);
+        //day 3
+        editor.putString("D3P1", schedule[3][1]);
+        editor.putString("D3P2", schedule[3][2]);
+        editor.putString("D3P3", schedule[3][3]);
+        editor.putString("D3P4", schedule[3][4]);
+        //day 4
+        editor.putString("D4P1", schedule[4][1]);
+        editor.putString("D4P2", schedule[4][2]);
+        editor.putString("D4P3", schedule[4][3]);
+        editor.putString("D4P4", schedule[4][4]);
+        //write changes to file
+        editor.apply();
+    }
 
 }
