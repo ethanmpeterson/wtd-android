@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
-                    selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
                     update();
                     drawSchedule();
+                    selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
                     changeDate.setText("Change Date");
                     dateChanged = false; //set bool back to false so date dialog comes back if user would use change date button again
 
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prefCheck() { //checks if a shared preferences has been created
-        File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/schedule.xml");
+        File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/Schedule.xml");
         //check for shared prefs file
         if (prefs.exists()) {
             prefsAvailable = true;
