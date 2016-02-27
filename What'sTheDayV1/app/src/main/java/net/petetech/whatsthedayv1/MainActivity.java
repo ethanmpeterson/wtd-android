@@ -50,11 +50,6 @@ public class MainActivity extends AppCompatActivity {
     int timeFrame = 5; //will be used to access time frame row of the array
     boolean dateChanged; //storing whether user has changed the date or not
     boolean prefsAvailable; //true if there is a preferences file
-    //create strings to be displayed for each class
-    String p1;
-    String p2;
-    String p3;
-    String p4;
 
     String p1Time;
     String p2Time;
@@ -223,10 +218,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (prefsAvailable) {
-            // NOTE: put user inputted schedule here
             SharedPreferences Schedule = PreferenceManager.getDefaultSharedPreferences(this);
             //update schedule with contents of shared prefs file set by user
-
+            // day 1
+            schedule[1][1] = Schedule.getString("D1P1", "");
+            schedule[1][2] = Schedule.getString("D1P2", "");
+            schedule[1][3] = Schedule.getString("D1P3", "");
+            schedule[1][4] = Schedule.getString("D1P4", "");
+            // day 2
+            schedule[2][1] = Schedule.getString("D2P1", "");
+            schedule[2][2] = Schedule.getString("D2P2", "");
+            schedule[2][3] = Schedule.getString("D2P3", "");
+            schedule[2][4] = Schedule.getString("D2P4", "");
+            // day 3
+            schedule[3][1] = Schedule.getString("D3P1", "");
+            schedule[3][2] = Schedule.getString("D3P2", "");
+            schedule[3][3] = Schedule.getString("D3P3", "");
+            schedule[3][4] = Schedule.getString("D3P3", "");
+            // day 4
+            schedule[4][1] = Schedule.getString("D4P1", "");
+            schedule[4][2] = Schedule.getString("D4P2", "");
+            schedule[4][3] = Schedule.getString("D4P3", "");
+            schedule[4][4] = Schedule.getString("D4P4", "");
         }
         //setup time frame strings in array
         schedule[timeFrame][1] = p1Time;
