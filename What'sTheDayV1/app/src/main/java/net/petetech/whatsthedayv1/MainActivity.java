@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         changeDate = (Button) findViewById(R.id.cd);
         prefCheck();
         update();
-        selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
+        selectedDate.setText(getMonth(month) + " " + dayOfMonth + ", " + cYear);
         changeDate.setText("Change Date");
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                     new DatePickerDialog(MainActivity.this, listener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
                 } else if (dateChanged) {
                     dayNum = schoolYear[month - 1][dayOfMonth];
-                    Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
+                    Toast.makeText(MainActivity.this, "Date Set To: " + getMonth(month) + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
                     update();
                     drawSchedule();
-                    selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
+                    selectedDate.setText(getMonth(month) + " " + dayOfMonth + ", " + cYear);
                     changeDate.setText("Change Date");
                     dateChanged = false; //set bool back to false so date dialog comes back if user would use change date button again
                 }
@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
             dayNum = schoolYear[monthInput - 1][dayInput]; //get new dayNum based on the selected date
             update();
             drawSchedule();
-            Toast.makeText(MainActivity.this, "Date Set To: " + getChangedMonth(monthOfYear + 1) + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
-            selectedDate.setText(getChangedMonth(monthOfYear + 1) + " " + dayInput + ", " + year);
+            Toast.makeText(MainActivity.this, "Date Set To: " + getMonth(monthOfYear + 1) + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
+            selectedDate.setText(getMonth(monthOfYear + 1) + " " + dayInput + ", " + year);
         }
     };
 
@@ -140,47 +140,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    String getMonth() {
-        if (month == 1 || monthInput == 1) {
-            return "January";
-        }
-        if (month == 2 || monthInput == 2) {
-            return "February";
-        }
-        if (month == 3 || monthInput == 3) {
-            return "March";
-        }
-        if (month == 4 || monthInput == 4) {
-            return "April";
-        }
-        if (month == 5 || monthInput == 5) {
-            return "May";
-        }
-        if (month == 6 || monthInput == 6) {
-            return "June";
-        }
-        if (month == 7 || monthInput == 7) {
-            return "July";
-        }
-        if (month == 8 || monthInput == 8) {
-            return "August";
-        }
-        if (month == 9 || monthInput == 9) {
-            return "September";
-        }
-        if (month == 10 || monthInput == 10) {
-            return "October";
-        }
-        if (month == 11 || monthInput == 11) {
-            return "November";
-        }
-        if (month == 12 || monthInput == 12) {
-            return "December";
-        }
-        return null;
-    }
-
-    String getChangedMonth(int m) {
+    String getMonth(int m) {
         if (m == 1) {
             return "January";
         }
