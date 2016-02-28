@@ -82,7 +82,9 @@ public class SetDay extends AppCompatActivity {
     public void saveSchedule() {
         SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = Schedule.edit(); //create instance of the editor object allowing the preferences to be edited
+
         editor.clear(); // clear values currently in the file if the change schedule function had been used before
+
         //add day 1 schedule to file
         editor.putString("D1P1", schedule[1][1]); //first string passed into the function will be the naming scheme for the rest of the file day then period
         editor.putString("D1P2", schedule[1][2]);

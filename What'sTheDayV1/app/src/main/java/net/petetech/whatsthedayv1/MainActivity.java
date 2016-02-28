@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             schedule[3][1] = S.getString("D3P1", "");
             schedule[3][2] = S.getString("D3P2", "");
             schedule[3][3] = S.getString("D3P3", "");
-            schedule[3][4] = S.getString("D3P3", "");
+            schedule[3][4] = S.getString("D3P4", "");
             // day 4
             schedule[4][1] = S.getString("D4P1", "");
             schedule[4][2] = S.getString("D4P2", "");
