@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/p1View"
+        android:layout_marginTop="35dp"
         android:layout_below="@+id/cd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -79,9 +80,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/p1View"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Selected Date:"
+        android:id="@+id/date"
+        android:layout_below="@+id/dayView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
 </RelativeLayout>
