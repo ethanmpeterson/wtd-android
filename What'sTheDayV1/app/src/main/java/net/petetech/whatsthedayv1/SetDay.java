@@ -21,6 +21,7 @@ public class SetDay extends AppCompatActivity {
     private EditText p3;
     private EditText p4;
     private TextView header;
+    private Global g = new Global(); // private instance of global variable to make global variables for other activities to use
     int daySet = 1; //storing the day number the user is setting (starts at day 1
 
     String schedule[][] = new String[5][5]; //make array 5x5 because of zero indexing
@@ -36,6 +37,8 @@ public class SetDay extends AppCompatActivity {
         p4 = (EditText) findViewById(R.id.p4Field);
         header = (TextView) findViewById(R.id.header);
         next = (Button) findViewById(R.id.next);
+        final Intent main; //Intent returns user to main activity
+        main = new Intent(this, MainActivity.class);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //code runs upon button pressed
@@ -51,8 +54,6 @@ public class SetDay extends AppCompatActivity {
                     if (daySet == 4) { // If statement will be used to write new schedule to shared preference
                         saveSchedule();
                         Toast.makeText(SetDay.this, "Schedule Saved!", Toast.LENGTH_SHORT).show();
-                        Intent main; //Intent returns user to main activity
-                        main = new Intent("android.intent.action.MAIN");
                         startActivity(main);
                     } else {
                         daySet++; //increment daySet so that the next values put into array get their own row
@@ -76,7 +77,7 @@ public class SetDay extends AppCompatActivity {
 
     public void saveSchedule() {
         //setup shared preference file for the users schedule;
-        SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_PRIVATE);
+        SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_WORLD_WRITEABLE);
         SharedPreferences.Editor editor = Schedule.edit(); //create instance of the editor object allowing the preferences to be edited
         //add day 1 schedule to file
         editor.putString("D1P1", schedule[1][1]); //first string passed into the function will be the naming scheme for the rest of the file day then period
@@ -99,6 +100,6 @@ public class SetDay extends AppCompatActivity {
         editor.putString("D4P3", schedule[4][3]);
         editor.putString("D4P4", schedule[4][4]);
         //write changes to file
-        editor.apply();
+        editor.commit();
     }
 }

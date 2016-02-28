@@ -2,6 +2,7 @@ package net.petetech.whatsthedayv1;
 
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView day; //textView to display the dayNum
     private TextView selectedDate;
     Button changeDate; //button to open second activity to change the date displayed
+    private Global g = new Global();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,28 +220,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (prefsAvailable) {
-            SharedPreferences Schedule = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences S = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             //update schedule with contents of shared prefs file set by user
             // day 1
-            schedule[1][1] = Schedule.getString("D1P1", "");
-            schedule[1][2] = Schedule.getString("D1P2", "");
-            schedule[1][3] = Schedule.getString("D1P3", "");
-            schedule[1][4] = Schedule.getString("D1P4", "");
+            schedule[1][1] = S.getString("D1P1", "");
+            schedule[1][2] = S.getString("D1P2", "");
+            schedule[1][3] = S.getString("D1P3", "");
+            schedule[1][4] = S.getString("D1P4", "");
             // day 2
-            schedule[2][1] = Schedule.getString("D2P1", "");
-            schedule[2][2] = Schedule.getString("D2P2", "");
-            schedule[2][3] = Schedule.getString("D2P3", "");
-            schedule[2][4] = Schedule.getString("D2P4", "");
+            schedule[2][1] = S.getString("D2P1", "");
+            schedule[2][2] = S.getString("D2P2", "");
+            schedule[2][3] = S.getString("D2P3", "");
+            schedule[2][4] = S.getString("D2P4", "");
             // day 3
-            schedule[3][1] = Schedule.getString("D3P1", "");
-            schedule[3][2] = Schedule.getString("D3P2", "");
-            schedule[3][3] = Schedule.getString("D3P3", "");
-            schedule[3][4] = Schedule.getString("D3P3", "");
+            schedule[3][1] = S.getString("D3P1", "");
+            schedule[3][2] = S.getString("D3P2", "");
+            schedule[3][3] = S.getString("D3P3", "");
+            schedule[3][4] = S.getString("D3P3", "");
             // day 4
-            schedule[4][1] = Schedule.getString("D4P1", "");
-            schedule[4][2] = Schedule.getString("D4P2", "");
-            schedule[4][3] = Schedule.getString("D4P3", "");
-            schedule[4][4] = Schedule.getString("D4P4", "");
+            schedule[4][1] = S.getString("D4P1", "");
+            schedule[4][2] = S.getString("D4P2", "");
+            schedule[4][3] = S.getString("D4P3", "");
+            schedule[4][4] = S.getString("D4P4", "");
         }
         //setup time frame strings in array
         schedule[timeFrame][1] = p1Time;
