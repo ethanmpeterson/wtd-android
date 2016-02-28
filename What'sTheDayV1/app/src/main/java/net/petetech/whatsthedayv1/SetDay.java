@@ -21,7 +21,6 @@ public class SetDay extends AppCompatActivity {
     private EditText p3;
     private EditText p4;
     private TextView header;
-    private Global g = new Global(); // private instance of global variable to make global variables for other activities to use
     int daySet = 1; //storing the day number the user is setting (starts at day 1
     //setup shared preference file for the users schedule;
 
@@ -53,7 +52,7 @@ public class SetDay extends AppCompatActivity {
                     schedule[daySet][4] = p4.getText().toString();
                     Toast.makeText(SetDay.this, "Day " + daySet + " Set", Toast.LENGTH_SHORT).show();
                     if (daySet == 3) {
-                        next.setText("Finish");
+                        next.setText("Save & Finish");
                     }
                     if (daySet == 4) { // If statement will be used to write new schedule to shared preference
                         saveSchedule();

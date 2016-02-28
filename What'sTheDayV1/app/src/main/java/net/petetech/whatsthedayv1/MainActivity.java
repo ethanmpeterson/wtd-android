@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView day; //textView to display the dayNum
     private TextView selectedDate;
     Button changeDate; //button to open second activity to change the date displayed
-    private Global g = new Global();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedDate.setText(getMonth() + " " + dayOfMonth + ", " + cYear);
                     changeDate.setText("Change Date");
                     dateChanged = false; //set bool back to false so date dialog comes back if user would use change date button again
-
                 }
             }
         });
@@ -121,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
             dayNum = schoolYear[monthInput - 1][dayInput]; //get new dayNum based on the selected date
             update();
             drawSchedule();
-            Toast.makeText(MainActivity.this, "Date Set To: " + getMonth() + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
-            selectedDate.setText(getMonth() + " " + dayInput + ", " + year);
+            Toast.makeText(MainActivity.this, "Date Set To: " + getChangedMonth(monthOfYear + 1) + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
+            selectedDate.setText(getChangedMonth(monthOfYear + 1) + " " + dayInput + ", " + year);
         }
     };
 
@@ -183,6 +180,45 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    String getChangedMonth(int m) {
+        if (m == 1) {
+            return "January";
+        }
+        if (m == 2) {
+            return "February";
+        }
+        if (m == 3) {
+            return "March";
+        }
+        if (m == 4) {
+            return "April";
+        }
+        if (m == 5) {
+            return "May";
+        }
+        if (m == 6) {
+            return "June";
+        }
+        if (m == 7) {
+            return "July";
+        }
+        if (m == 8) {
+            return "August";
+        }
+        if (m == 9) {
+            return "September";
+        }
+        if (m == 10) {
+            return "October";
+        }
+        if (m == 11) {
+            return "November";
+        }
+        if (m == 12) {
+            return "December";
+        }
+        return null;
+    }
 
     public void update() { //updates schedule
 
