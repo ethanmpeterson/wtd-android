@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (prefsAvailable) {
-            SharedPreferences S = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences S = getSharedPreferences("Schedule", Context.MODE_PRIVATE);
             //update schedule with contents of shared prefs file set by user
             // day 1
             schedule[1][1] = S.getString("D1P1", "");

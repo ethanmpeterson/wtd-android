@@ -23,6 +23,7 @@ public class SetDay extends AppCompatActivity {
     private TextView header;
     private Global g = new Global(); // private instance of global variable to make global variables for other activities to use
     int daySet = 1; //storing the day number the user is setting (starts at day 1
+    //setup shared preference file for the users schedule;
 
     String schedule[][] = new String[5][5]; //make array 5x5 because of zero indexing
 
@@ -51,6 +52,9 @@ public class SetDay extends AppCompatActivity {
                     schedule[daySet][3] = p3.getText().toString();
                     schedule[daySet][4] = p4.getText().toString();
                     Toast.makeText(SetDay.this, "Day " + daySet + " Set", Toast.LENGTH_SHORT).show();
+                    if (daySet == 3) {
+                        next.setText("Finish");
+                    }
                     if (daySet == 4) { // If statement will be used to write new schedule to shared preference
                         saveSchedule();
                         Toast.makeText(SetDay.this, "Schedule Saved!", Toast.LENGTH_SHORT).show();
@@ -76,9 +80,9 @@ public class SetDay extends AppCompatActivity {
     }
 
     public void saveSchedule() {
-        //setup shared preference file for the users schedule;
-        SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences Schedule = getSharedPreferences("Schedule", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = Schedule.edit(); //create instance of the editor object allowing the preferences to be edited
+        editor.clear(); // clear values currently in the file if the change schedule function had been used before
         //add day 1 schedule to file
         editor.putString("D1P1", schedule[1][1]); //first string passed into the function will be the naming scheme for the rest of the file day then period
         editor.putString("D1P2", schedule[1][2]);
