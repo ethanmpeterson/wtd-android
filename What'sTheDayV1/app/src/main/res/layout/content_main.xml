@@ -87,4 +87,26 @@
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Warning!"
+        android:id="@+id/warn"
+        android:layout_below="@+id/p4View"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="39dp"
+        android:textColor="#d32f2f"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/warnText"
+        android:layout_below="@+id/warn"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#d32f2f" />
+
 </RelativeLayout>

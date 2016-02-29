@@ -16,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.Calendar;
 
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView period4;
     private TextView day; //textView to display the dayNum
     private TextView selectedDate;
+    private TextView warning;
+    private TextView warningText;
     Button changeDate; //button to open second activity to change the date displayed
 
     @Override
@@ -81,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         period3 = (TextView) findViewById(R.id.p3View);
         period4 = (TextView) findViewById(R.id.p4View);
         selectedDate = (TextView) findViewById(R.id.date);
+        warning = (TextView) findViewById(R.id.warn);
+        warningText = (TextView) findViewById(R.id.warnText);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
         prefCheck();
@@ -251,8 +257,11 @@ public class MainActivity extends AppCompatActivity {
         //check for shared prefs file
         if (prefs.exists()) {
             prefsAvailable = true;
+            warning.setText(null); // do not display the warning text if the user has a schedule
         } else if (!prefs.exists()) {
             prefsAvailable = false;
+            warning.setText("WARNING:"); // display warning if the user has not set their own schedule
+            warningText.setText("This is the default schedule! Please set your own schedule in the settings menu");
         }
     }
 
