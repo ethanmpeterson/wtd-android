@@ -16,7 +16,6 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.Calendar;
@@ -283,6 +282,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Intent settings = new Intent("net.petetech.whatsthedayv1.Settings");
                 startActivity(settings);
+                break;
+            case R.id.action_about:
+                Intent about = new Intent(this, About.class);
+                startActivity(about);
                 break;
                 default:
                     return super.onOptionsItemSelected(item);

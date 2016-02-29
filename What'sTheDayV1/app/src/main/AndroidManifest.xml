@@ -3,12 +3,12 @@
     package="net.petetech.whatsthedayv1">
 
     <application
+        android:name=".Global"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="My Schedule"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="Global">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -42,13 +42,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.petetech.whatsthedayv1.Settings" />
+
             <intent-filter>
                 <action android:name="net.petetech.whatsthedayv1.SetDay" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".About"></activity>
     </application>
-
 
 </manifest>
