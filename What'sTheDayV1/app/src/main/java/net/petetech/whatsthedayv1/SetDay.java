@@ -95,15 +95,15 @@ public class SetDay extends AppCompatActivity {
         editor.putString("D2P3", schedule[2][3]);
         editor.putString("D2P4", schedule[2][4]);
         //day 3
-        editor.putString("D3P1", schedule[3][1]);
-        editor.putString("D3P2", schedule[3][2]);
-        editor.putString("D3P3", schedule[3][3]);
-        editor.putString("D3P4", schedule[3][4]);
+        editor.putString("D3P1", schedule[1][4]);
+        editor.putString("D3P2", schedule[1][2]);
+        editor.putString("D3P3", schedule[1][3]);
+        editor.putString("D3P4", schedule[1][1]);
         //day 4
-        editor.putString("D4P1", schedule[4][1]);
-        editor.putString("D4P2", schedule[4][2]);
-        editor.putString("D4P3", schedule[4][3]);
-        editor.putString("D4P4", schedule[4][4]);
+        editor.putString("D4P1", schedule[2][4]);
+        editor.putString("D4P2", schedule[2][2]);
+        editor.putString("D4P3", schedule[2][3]);
+        editor.putString("D4P4", schedule[2][1]);
         //write changes to file
         editor.commit();
     }
