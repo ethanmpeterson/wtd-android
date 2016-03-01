@@ -49,7 +49,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".About"></activity>
+        <activity android:name=".About" />
+        <activity android:name=".Setup"></activity>
     </application>
 
 </manifest>

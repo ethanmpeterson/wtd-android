@@ -63,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView warning;
     private TextView warningText;
     Button changeDate; //button to open second activity to change the date displayed
+    File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/Schedule.xml");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        prefCheck();
+        if (!prefsAvailable) {
+            Intent setup = new Intent(this, Setup.class);
+            startActivity(setup);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("What's The Day?");
@@ -84,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         update();
         selectedDate.setText(getMonth(month) + " " + dayOfMonth + ", " + cYear);
         changeDate.setText("Change Date");
+
         changeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //shows date picker when change date is pressed
@@ -139,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             warning.setText("WARNING:"); // display warning if the user has not set their own schedule
             warningText.setText("This is the default schedule! Please set your own schedule in the settings menu");
         } else if (prefsAvailable) {
-            warning.setText(null);
+            warning.setText(null); // remove text if the schedule is set
             warningText.setText(null);
         }
     }
@@ -251,16 +258,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prefCheck() { //checks if a shared preferences has been created
-        File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/Schedule.xml");
         //check for shared prefs file
         if (prefs.exists()) {
             prefsAvailable = true;
-            warning.setText(null); // do not display the warning text if the user has a schedule
-            warningText.setText(null);
         } else if (!prefs.exists()) {
             prefsAvailable = false;
-            warning.setText("WARNING:"); // display warning if the user has not set their own schedule
-            warningText.setText("This is the default schedule! Please set your own schedule in the settings menu");
         }
     }
 
