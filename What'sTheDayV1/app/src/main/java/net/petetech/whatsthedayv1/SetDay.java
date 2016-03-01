@@ -74,7 +74,7 @@ public class SetDay extends AppCompatActivity {
     }
 
     private void clearText() { //function to clear user inputted text
-        //although function is simple it prevents the same coed being written repetitively
+        //although function is simple it prevents the same code fom being written repetitively
         p1.setText("");
         p2.setText("");
         p3.setText("");

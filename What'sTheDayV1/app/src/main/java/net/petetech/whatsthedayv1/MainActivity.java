@@ -52,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
     boolean dateChanged; //storing whether user has changed the date or not
     boolean prefsAvailable; //true if there is a preferences file
 
-    String p1Time;
-    String p2Time;
-    String p3Time;
-    String p4Time;
 
     String[][] schedule = new String[6][6]; //add extra space in array to store class time frames
     private TextView period1;
@@ -72,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        p1Time = "  (8:15 AM - 9:30 AM)";
-        p2Time = "  (9:35 AM - 10:50 AM)";
-        p3Time = "  (11:15 AM - 12:30 PM)";
-        p4Time = "  (1:25 PM - 2:40 PM)";
         setTitle("What's The Day?");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -142,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
             period2.setText(null);
             period3.setText(null);
             period4.setText(null);
+        }
+        if (!prefsAvailable) {
+            warning.setText("WARNING:"); // display warning if the user has not set their own schedule
+            warningText.setText("This is the default schedule! Please set your own schedule in the settings menu");
+        } else if (prefsAvailable) {
+            warning.setText(null);
+            warningText.setText(null);
         }
     }
 
@@ -245,10 +244,10 @@ public class MainActivity extends AppCompatActivity {
             schedule[4][4] = S.getString("D4P4", "");
         }
         //setup time frame strings in array
-        schedule[timeFrame][1] = p1Time;
-        schedule[timeFrame][2] = p2Time;
-        schedule[timeFrame][3] = p3Time;
-        schedule[timeFrame][4] = p4Time;
+        schedule[timeFrame][1] = "  (8:15 AM - 9:30 AM)";
+        schedule[timeFrame][2] = "  (9:35 AM - 10:50 AM)";
+        schedule[timeFrame][3] = "  (11:15 AM - 12:30 PM)";
+        schedule[timeFrame][4] = "  (1:25 PM - 2:40 PM)";
     }
 
     private void prefCheck() { //checks if a shared preferences has been created
