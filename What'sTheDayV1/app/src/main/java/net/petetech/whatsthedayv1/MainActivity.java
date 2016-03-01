@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         if (prefs.exists()) {
             prefsAvailable = true;
             warning.setText(null); // do not display the warning text if the user has a schedule
+            warningText.setText(null);
         } else if (!prefs.exists()) {
             prefsAvailable = false;
             warning.setText("WARNING:"); // display warning if the user has not set their own schedule
