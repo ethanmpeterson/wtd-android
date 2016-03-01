@@ -9,13 +9,13 @@ import android.widget.Button;
 public class Setup extends AppCompatActivity {
 
     private Button cont; // continue button in setup wizard
-    Intent setDay = new Intent(this, SetDay.class); // Intent linking to existing set day wizard from the settings menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
         setTitle("Welcome");
+        final Intent setDay = new Intent(this, SetDay.class); // Intent linking to existing set day wizard from the settings menu
         cont = (Button) findViewById(R.id.cont);
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
