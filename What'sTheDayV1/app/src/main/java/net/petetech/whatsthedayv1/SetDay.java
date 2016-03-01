@@ -21,7 +21,8 @@ public class SetDay extends AppCompatActivity {
     private EditText p3;
     private EditText p4;
     private TextView header;
-    int daySet = 1; //storing the day number the user is setting (starts at day 1
+    int daySet = 1; //storing the day number the user is setting starts at day 1
+    int dayScreen = 0; // int tracking what screen the user is on the wizard
     //setup shared preference file for the users schedule;
 
     String schedule[][] = new String[5][5]; //make array 5x5 because of zero indexing
@@ -43,6 +44,7 @@ public class SetDay extends AppCompatActivity {
             @Override
             public void onClick(View v) { //code runs upon button pressed
                 //check here if all text boxes are filled and display setup for next day
+
                 if (p1.getText().toString().equals("") || p2.getText().toString().equals("") || p3.getText().toString().equals("") || p4.getText().toString().equals("")) {
                     Toast.makeText(SetDay.this, "Fill in all Classes", Toast.LENGTH_SHORT).show();
                 } else if (!p1.getText().toString().equals("") && !p2.getText().toString().equals("") && !p3.getText().toString().equals("") && !p4.getText().toString().equals("")) {
@@ -51,10 +53,11 @@ public class SetDay extends AppCompatActivity {
                     schedule[daySet][3] = p3.getText().toString();
                     schedule[daySet][4] = p4.getText().toString();
                     Toast.makeText(SetDay.this, "Day " + daySet + " Set", Toast.LENGTH_SHORT).show();
-                    if (daySet == 3) {
-                        next.setText("Save & Finish");
+                    dayScreen++;
+                    if (dayScreen == 1) {
+                        next.setText("Save & Finish!");
                     }
-                    if (daySet == 4) { // If statement will be used to write new schedule to shared preference
+                    if (daySet == 2) {
                         saveSchedule();
                         Toast.makeText(SetDay.this, "Schedule Saved!", Toast.LENGTH_SHORT).show();
                         startActivity(main);
