@@ -30,8 +30,44 @@ public class Setup extends AppCompatActivity {
             public void onClick(View v) {
                 if (ssStudent) {
                     startActivity(setDay);
+                } else if (jsStudent) {
+                    // start junior school setup activity here
                 }
             }
         });
+    }
+
+    public void onCheckBoxClicked(View v) {
+        boolean checked = ((CheckBox) v).isChecked(); // true if one or more of the boxes is checked
+
+        switch(v.getId()) {
+            case R.id.js:
+                if (checked) {
+                    jsStudent = true;
+                    ssStudent = false;
+                    SS.setChecked(false);
+                } else {
+                    clearBox();
+                }
+                break;
+            case R.id.ss:
+                if (checked) {
+                    ssStudent = true;
+                    jsStudent = false;
+                    JS.setChecked(false);
+                } else {
+                    clearBox();
+                }
+                break;
+            default:
+                clearBox();
+        }
+    }
+
+    private void clearBox() {
+        JS.setChecked(false);
+        SS.setChecked(false);
+        ssStudent = false;
+        jsStudent = false;
     }
 }

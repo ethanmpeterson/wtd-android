@@ -38,7 +38,8 @@
         android:layout_marginTop="44dp"
         android:checked="false"
         android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onCheckBoxClicked" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -47,5 +48,6 @@
         android:id="@+id/ss"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:checked="false" />
+        android:checked="false"
+        android:onClick="onCheckBoxClicked" />
 </RelativeLayout>
