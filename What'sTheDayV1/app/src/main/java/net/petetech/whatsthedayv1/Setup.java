@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 public class Setup extends AppCompatActivity {
 
@@ -13,8 +14,9 @@ public class Setup extends AppCompatActivity {
     private CheckBox JS; // checked if the student is in the junior school
     private CheckBox SS; // checked if the student is in the Senior School
 
-    boolean jsStudent;
-    boolean ssStudent;
+    private boolean jsStudent;
+    private boolean ssStudent;
+    private boolean nothingChecked; // boolean true if the user has not checked any boxes preventing them from going forward with the setup wizard
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class Setup extends AppCompatActivity {
                     startActivity(setDay);
                 } else if (jsStudent) {
                     // start junior school setup activity here
+                } else if (nothingChecked) {
+                    Toast.makeText(Setup.this, "Please Pick Which School You Are In", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -61,6 +65,9 @@ public class Setup extends AppCompatActivity {
                 break;
             default:
                 clearBox();
+        }
+        if (!checked) {
+            nothingChecked = true;
         }
     }
 
