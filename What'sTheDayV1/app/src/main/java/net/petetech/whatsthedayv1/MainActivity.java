@@ -267,6 +267,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        // code runs when the app is closed by overriding the default method
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // code is run when app is resumed
+        update();
+        drawSchedule();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

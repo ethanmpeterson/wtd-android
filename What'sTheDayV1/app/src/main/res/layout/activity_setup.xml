@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hello! This is the first time the app has been started! Please continue and fill out your schedule!"
+        android:text="Welcome to the RSGC schedule app! Please fill out some info below to get started!"
         android:id="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -29,4 +29,23 @@
         android:layout_alignEnd="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am a Junior School Student "
+        android:id="@+id/js"
+        android:layout_marginTop="44dp"
+        android:checked="false"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am a Senior School Student"
+        android:id="@+id/ss"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:checked="false" />
 </RelativeLayout>
