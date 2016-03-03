@@ -33,7 +33,7 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I am a Junior School Student "
+        android:text="I am a Junior School Student or Parent "
         android:id="@+id/js"
         android:layout_marginTop="44dp"
         android:checked="false"
@@ -44,9 +44,22 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I am a Senior School Student"
+        android:text="I am a Senior School Student or Parent"
         android:id="@+id/ss"
-        android:layout_centerVertical="true"
+        android:checked="false"
+        android:onClick="onCheckBoxClicked"
+        android:layout_below="@+id/js"
+        android:layout_alignRight="@+id/js"
+        android:layout_alignEnd="@+id/js"
+        android:layout_marginTop="41dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am a Junior and Senior School Parent"
+        android:id="@+id/jsss"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/ss"
         android:layout_centerHorizontal="true"
         android:checked="false"
         android:onClick="onCheckBoxClicked" />
