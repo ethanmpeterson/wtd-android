@@ -48,10 +48,10 @@ public class SetDay extends AppCompatActivity {
                 if (p1.getText().toString().equals("") || p2.getText().toString().equals("") || p3.getText().toString().equals("") || p4.getText().toString().equals("")) {
                     Toast.makeText(SetDay.this, "Fill in all Classes", Toast.LENGTH_SHORT).show();
                 } else if (!p1.getText().toString().equals("") && !p2.getText().toString().equals("") && !p3.getText().toString().equals("") && !p4.getText().toString().equals("")) {
-                    schedule[daySet][1] = p1.getText().toString(); //collect strings from the text box if they have been filled in
-                    schedule[daySet][2] = p2.getText().toString();
-                    schedule[daySet][3] = p3.getText().toString();
-                    schedule[daySet][4] = p4.getText().toString();
+                    schedule[daySet][1] = p1.getText().toString().trim(); //collect strings from the text box if they have been filled in
+                    schedule[daySet][2] = p2.getText().toString().trim(); // trim leading and trailing spaces
+                    schedule[daySet][3] = p3.getText().toString().trim();
+                    schedule[daySet][4] = p4.getText().toString().trim();
                     Toast.makeText(SetDay.this, "Day " + daySet + " Set", Toast.LENGTH_SHORT).show();
                     dayScreen++;
                     if (dayScreen == 1) {
@@ -98,7 +98,7 @@ public class SetDay extends AppCompatActivity {
         editor.putString("D2P3", schedule[2][3]);
         editor.putString("D2P4", schedule[2][4]);
         //day 3
-        editor.putString("D3P1", schedule[1][4]);
+        editor.putString("D3P1", schedule[1][4]); // day 1 and 2 values for days 3 and 4 so the user will only need to enter 2 days of their schedule
         editor.putString("D3P2", schedule[1][2]);
         editor.putString("D3P3", schedule[1][3]);
         editor.putString("D3P4", schedule[1][1]);

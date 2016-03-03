@@ -265,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
             prefsAvailable = false;
         }
     }
-
     @Override
     public void onResume() {
         super.onResume();
