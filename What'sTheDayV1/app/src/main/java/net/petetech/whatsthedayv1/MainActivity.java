@@ -267,12 +267,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        // code runs when the app is closed by overriding the default method
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         // code is run when app is resumed
