@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             dayNum = schoolYear[month - 1][dayOfMonth];
         }
         if (!prefsAvailable) {
-            if (dayNum == 1) { //use my schedule if the user has not set their own
+            if (dayNum == 1) { // use my schedule if the user has not set their own
                 schedule[dayNum][1] = "Comm. Tech";
                 schedule[dayNum][2] = "Gym";
                 schedule[dayNum][3] = "English";
