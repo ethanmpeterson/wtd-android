@@ -21,25 +21,11 @@ import java.io.File;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    final static int[][] schoolYear = {
-            {9, 9, 9, 9, 0, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 4, 9, 9, 1, 2, 3, 4, 1, 9, 9, 2, 3, 4, 1, 2, 9, 9}, // January
-            {9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 9, 9, 9, 9, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 4, 9, 9, 1},       // February
-            {9, 2, 3, 4, 1, 9, 9, 2, 3, 4, 1, 2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 3, 4, 1}, // March
-            {9, 2, 9, 9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 4, 9, 9, 1, 2, 3, 4, 1, 9, 9, 2, 3, 4, 1, 2, 9},    // April
-            {9, 9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 4, 9, 9, 1, 2, 3, 4, 1, 9, 9, 9, 2, 3, 4, 1, 9, 9, 2, 3}, // May
-            {9, 4, 1, 2, 9, 9, 9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9},    // June
-            {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}, // July
-            {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}, // August
-            {9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 1, 2, 9, 9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 5, 9, 9, 4, 1, 2},    // September
-            {9, 3, 4, 9, 9, 1, 2, 3, 4, 1, 9, 9, 9, 2, 3, 4, 1, 9, 9, 2, 3, 4, 1, 2, 9, 9, 3, 4, 1, 2, 3, 9}, // October
-            {9, 9, 4, 1, 2, 3, 4, 9, 9, 1, 2, 3, 9, 9, 9, 9, 4, 1, 2, 3, 4, 9, 9, 1, 2, 3, 4, 1, 9, 9, 2},    // November
-            {9, 3, 4, 1, 2, 9, 9, 3, 4, 1, 2, 3, 9, 9, 4, 1, 2, 3, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9}  // December
-    }; //same array that is in the gecko firmware that is filled with the day calendar for 2015-2016 school year
-
     //ints and Strings for day counting
     int dayNum; //stores day num and whether it is holiday or not
 
     Calendar c = Calendar.getInstance();
+    Global g = new Global();
 
     int month;
     int dayOfMonth;
@@ -97,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!dateChanged) {
                     new DatePickerDialog(MainActivity.this, listener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
                 } else if (dateChanged) {
-                    dayNum = schoolYear[month - 1][dayOfMonth];
+                    dayNum = g.dayNum(month, dayOfMonth);
                     Toast.makeText(MainActivity.this, "Date Set To: " + getMonth(month) + " " + dayOfMonth + ", " + cYear, Toast.LENGTH_SHORT).show(); //displays current date when user presses today button
                     update();
                     drawSchedule();
@@ -119,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             yearInput = year;
             dateChanged = true;
             changeDate.setText("Today");
-            dayNum = schoolYear[monthInput - 1][dayInput]; //get new dayNum based on the selected date
+            dayNum = g.dayNum(monthInput, dayInput); //get new dayNum based on the selected date
             update();
             drawSchedule();
             Toast.makeText(MainActivity.this, "Date Set To: " + getMonth(monthOfYear + 1) + " " + dayInput + ", " + year, Toast.LENGTH_SHORT).show();
@@ -198,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
             weekday = c.get(Calendar.DAY_OF_WEEK); //will eventually be used to determine whether it is a weekend or not
             cYear = c.get(Calendar.YEAR);
-            dayNum = schoolYear[month - 1][dayOfMonth];
+            dayNum = g.dayNum(month, dayOfMonth);
         }
         if (!prefsAvailable) {
             if (dayNum == 1) { // use my schedule if the user has not set their own
