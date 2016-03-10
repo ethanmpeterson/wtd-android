@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView warningText;
     Button changeDate; //button to open second activity to change the date displayed
     File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/Schedule.xml");
+    File mode = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/setupParams.xml");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,6 +252,17 @@ public class MainActivity extends AppCompatActivity {
             prefsAvailable = false;
         }
     }
+
+
+    private boolean modeCheck() {
+       if (mode.exists()) {
+           return true;
+       } else if (!mode.exists()) {
+           return false;
+       }
+        return false;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
