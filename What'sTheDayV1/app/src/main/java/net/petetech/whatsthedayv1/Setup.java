@@ -40,13 +40,17 @@ public class Setup extends AppCompatActivity {
             public void onClick(View v) {
                 if (ssStudent) {
                     startActivity(setDay);
+                    editor.putBoolean("ssMode", true);
                 } else if (jsStudent) {
                     // start junior school setup activity here
+                    editor.putBoolean("jsMode", true);
                 } else if (parent) {
                     // start parent setup
+                    editor.putBoolean("parentMode", true);
                 } else if (nothingChecked) {
                     Toast.makeText(Setup.this, "Please Pick Which School You Are In", Toast.LENGTH_LONG).show();
                 }
+                editor.commit();
             }
         });
     }
