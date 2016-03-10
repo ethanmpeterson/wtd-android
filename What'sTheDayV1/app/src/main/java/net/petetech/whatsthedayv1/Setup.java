@@ -22,9 +22,6 @@ public class Setup extends AppCompatActivity {
     private boolean parent; // true if the box saying that the user is a junior and senior school parent is checked
     private boolean nothingChecked; // boolean true if the user has not checked any boxes preventing them from going forward with the setup wizard
 
-    SharedPreferences setupParams = getSharedPreferences("setupParams", Context.MODE_PRIVATE); //set up shared prefs file to store selections
-    SharedPreferences.Editor editor = setupParams.edit();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,19 +35,21 @@ public class Setup extends AppCompatActivity {
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences setupParams = getSharedPreferences("setupParams", Context.MODE_PRIVATE); //set up shared prefs file to store selections
+                SharedPreferences.Editor edit = setupParams.edit();
                 if (ssStudent) {
                     startActivity(setDay);
-                    editor.putBoolean("ssMode", true);
+                    edit.putBoolean("ssMode", true);
                 } else if (jsStudent) {
                     // start junior school setup activity here
-                    editor.putBoolean("jsMode", true);
+                    edit.putBoolean("jsMode", true);
                 } else if (parent) {
                     // start parent setup
-                    editor.putBoolean("parentMode", true);
+                    edit.putBoolean("parentMode", true);
                 } else if (nothingChecked) {
                     Toast.makeText(Setup.this, "Please Pick Which School You Are In", Toast.LENGTH_LONG).show();
                 }
-                editor.commit();
+                edit.commit();
             }
         });
     }
