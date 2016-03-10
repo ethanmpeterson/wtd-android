@@ -1,8 +1,10 @@
 package net.petetech.whatsthedayv1;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +21,9 @@ public class Setup extends AppCompatActivity {
     private boolean ssStudent;
     private boolean parent; // true if the box saying that the user is a junior and senior school parent is checked
     private boolean nothingChecked; // boolean true if the user has not checked any boxes preventing them from going forward with the setup wizard
+
+    SharedPreferences setupParams = getSharedPreferences("setupParams", Context.MODE_PRIVATE); //set up shared prefs file to store selections
+    SharedPreferences.Editor editor = setupParams.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
