@@ -1,5 +1,6 @@
 package net.petetech.whatsthedayv1;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     int timeFrame = 5; //will be used to access time frame row of the array
     boolean dateChanged; //storing whether user has changed the date or not
     boolean prefsAvailable; //true if there is a preferences file
-    boolean userMode[] = new boolean[2]; // first space will store parentMode second space junior school third space senior school
+    boolean userMode[] = new boolean[3]; // first space will store parentMode second space junior school third space senior school
 
 
     String[][] schedule = new String[6][6]; //add extra space in array to store class time frames
@@ -260,8 +261,8 @@ public class MainActivity extends AppCompatActivity {
             userMode[0] = m.getBoolean("parentMode", false);
             userMode[1] = m.getBoolean("jsMode", false);
             userMode[2] = m.getBoolean("ssMode", false);
-        } else {
-            
+        } else if (!mode.exists()) { //create an alert dialog to have the user pick a mode
+
         }
     }
 
