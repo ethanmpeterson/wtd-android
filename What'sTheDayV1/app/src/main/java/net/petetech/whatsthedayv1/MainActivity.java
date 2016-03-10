@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView selectedDate;
     private TextView warning;
     private TextView warningText;
-    Button changeDate; //button to open second activity to change the date displayed
+    private Button changeDate; //button to open second activity to change the date displayed
+    private Button showDialog;
     File prefs = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/Schedule.xml");
     File mode = new File("/data/data/net.petetech.whatsthedayv1/shared_prefs/setupParams.xml");
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         warningText = (TextView) findViewById(R.id.warnText);
         day = (TextView) findViewById(R.id.dayView);
         changeDate = (Button) findViewById(R.id.cd);
+        showDialog = (Button) findViewById(R.id.showDialog);
         prefCheck();
         update();
         selectedDate.setText(getMonth(month) + " " + dayOfMonth + ", " + cYear);
@@ -98,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
         });
         update();
         drawSchedule();
+
+        showDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EthanDialog test = new EthanDialog();
+                test.show(getFragmentManager(), "test");
+            }
+        });
     }
 
     DatePickerDialog.OnDateSetListener listener = new OnDateSetListener() {
