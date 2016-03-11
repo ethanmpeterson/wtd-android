@@ -30,7 +30,21 @@ public class EthanDialog extends DialogFragment { // class will construct differ
         builder.setSingleChoiceItems(R.array.modes_array, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                switch(which) {
+                    case 0:
+                        ssMode = true;
+                        break;
+                    case 1:
+                        jsMode = true;
+                        break;
+                    case 2:
+                        parentMode = true;
+                        break;
+                    default:
+                        ssMode = false;
+                        jsMode = false;
+                        parentMode = false;
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
