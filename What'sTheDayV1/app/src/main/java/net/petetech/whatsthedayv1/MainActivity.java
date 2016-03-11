@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EthanDialog test = new EthanDialog();
+                test.setDialogText("Please Pick a Mode:", "Who are you?");
                 test.show(getFragmentManager(), "test");
             }
         });

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">What\'s The Day V1</string>
     <string name="action_settings">Settings</string>
+    <string-array name="modes_array">
+        <item>I am a Senior School Student or Parent</item>
+        <item>I am Junior School Student or Parent</item>
+        <item>I am both a Junior and Senior School Parent</item>
+    </string-array>
 </resources>
