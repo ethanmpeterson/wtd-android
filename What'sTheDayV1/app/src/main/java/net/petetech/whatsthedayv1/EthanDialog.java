@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,9 +12,11 @@ public class EthanDialog extends DialogFragment { // class will construct differ
 
     String dialogTitle = "Error: Set the Title Text!";
     String dialogMessage = "Error: Set the Dialog Message!";
-    private boolean parentMode = false;
-    private boolean ssMode = false;
-    private boolean jsMode = false;
+    Global g = new Global();
+
+    boolean parentMode = false;
+    boolean ssMode = false;
+    boolean jsMode = false;
 
     public void setDialogText(String title, String message) {
         dialogTitle = title;
@@ -39,11 +40,13 @@ public class EthanDialog extends DialogFragment { // class will construct differ
                         break;
                     case 2:
                         parentMode = true;
+//                        g.putBooleanMode(parentMode, "PARENT");
                         break;
                     default:
                         ssMode = false;
                         jsMode = false;
                         parentMode = false;
+                        g.clearMode();
                 }
             }
         });
