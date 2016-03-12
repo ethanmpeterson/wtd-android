@@ -62,8 +62,7 @@ public class EthanDialog extends DialogFragment { // class will construct differ
                 Toast.makeText(getActivity(), "Positive Button Was Clicked", Toast.LENGTH_SHORT).show();
             }
         });
-        Dialog dialog = builder.create();
 
-        return dialog; // return dialog object that has been created this model will be used for the dialogs in this app
+        return builder.create(); // return dialog object that has been created this model will be used for the dialogs in this app
     }
 }
