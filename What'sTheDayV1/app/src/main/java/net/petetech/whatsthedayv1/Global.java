@@ -1,6 +1,8 @@
 package net.petetech.whatsthedayv1;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 /* Public class to store global variables to be accessible from other activities */
 
@@ -22,31 +24,30 @@ public class Global extends Application {
     private boolean parentMode;
     private boolean ssMode;
     private boolean jsMode;
+
+
     int dayNum(int month, int day) {
         return schoolYear[month - 1][day];
     }
-    public void putBooleanMode(boolean put, String whatBool) {
-        switch (whatBool) {
-            case "PARENT":
-                put = parentMode;
-                break;
-            case "SENIOR":
-                put = ssMode;
-                break;
-            case "JUNIOR":
-                put = jsMode;
-                break;
-            default:
-                parentMode = false;
-                ssMode = false;
-                jsMode = false;
+
+    public void setMode(boolean put, String whatBool) {
+        if (whatBool.equals("PARENT")) {
+            put = parentMode;
+        } else if (whatBool.equals("SENIOR")) {
+            put = ssMode;
+        } else if (whatBool.equals("JUNIOR")) {
+            put = jsMode;
+        } else {
+            put = false;
         }
     }
+
     public void clearMode() {
         parentMode = false;
         ssMode = false;
         jsMode = false;
     }
+
 //    public boolean getMode(String Mode) {
 //        switch (Mode) {
 //            case "PARENT":
@@ -58,4 +59,14 @@ public class Global extends Application {
 //            default:
 //                return false;
 //        }
+//    }
+
+    public void saveToXML() {
+        SharedPreferences setup = getSharedPreferences("setupParams", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = setup.edit();
+        edit.putBoolean("ParentMode", parentMode);
+        edit.putBoolean("ssMode", ssMode);
+        edit.putBoolean("jsMode", jsMode);
+        edit.commit();
     }
+}

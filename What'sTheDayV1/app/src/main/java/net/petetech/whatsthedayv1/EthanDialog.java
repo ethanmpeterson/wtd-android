@@ -31,16 +31,21 @@ public class EthanDialog extends DialogFragment { // class will construct differ
         builder.setSingleChoiceItems(R.array.modes_array, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch(which) {
+                switch (which) {
                     case 0:
                         ssMode = true;
+                        jsMode = false;
+                        parentMode = false;
                         break;
                     case 1:
                         jsMode = true;
+                        ssMode = false;
+                        parentMode = false;
                         break;
                     case 2:
                         parentMode = true;
-//                        g.putBooleanMode(parentMode, "PARENT");
+                        ssMode = false;
+                        jsMode = false;
                         break;
                     default:
                         ssMode = false;
@@ -59,7 +64,17 @@ public class EthanDialog extends DialogFragment { // class will construct differ
         builder.setPositiveButton("Set", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), "Positive Button Was Clicked", Toast.LENGTH_SHORT).show();
+                if (parentMode) {
+                    g.setMode(parentMode, "PARENT");
+                } else if (ssMode) {
+                    g.setMode(ssMode, "SENIOR");
+                } else if (jsMode) {
+                    g.setMode(jsMode, "JUNIOR");
+                } else {
+                    Toast.makeText(getActivity(), "Please Pick a Mode", Toast.LENGTH_SHORT).show();
+                }
+                g.saveToXML();
+                Toast.makeText(getActivity(), "Mode Saved!", Toast.LENGTH_SHORT).show();
             }
         });
 
