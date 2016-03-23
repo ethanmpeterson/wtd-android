@@ -1,5 +1,6 @@
 package net.petetech.whatsthedayv1;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -256,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         schedule[timeFrame][3] = "  (11:15 AM - 12:30 PM)";
         schedule[timeFrame][4] = "  (1:25 PM - 2:40 PM)";
     }
+
 
     private void prefCheck() { //checks if a shared preferences has been created
         //check for shared prefs file
