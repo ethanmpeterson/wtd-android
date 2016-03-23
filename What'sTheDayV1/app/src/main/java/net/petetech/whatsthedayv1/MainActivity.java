@@ -1,6 +1,5 @@
 package net.petetech.whatsthedayv1;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     int timeFrame = 5; //will be used to access time frame row of the array
     boolean dateChanged; //storing whether user has changed the date or not
     boolean prefsAvailable; //true if there is a preferences file
+    boolean modeAvailable;
     boolean userMode[] = new boolean[3]; // first space will store parentMode second space junior school third space senior school
 
 
@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefCheck();
-//        if (!prefsAvailable) {
-//            Intent setup = new Intent(this, Setup.class);
-//            startActivity(setup);
-//        }
+        if (!prefsAvailable) {
+            Intent setup = new Intent(this, Setup.class);
+            startActivity(setup);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         modeCheck();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EthanDialog test = new EthanDialog();
+                ModeDialog test = new ModeDialog();
                 test.setDialogText("Please Pick a Mode:", "Who are you?");
                 test.show(getFragmentManager(), "test");
             }
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             userMode[1] = m.getBoolean("jsMode", false);
             userMode[2] = m.getBoolean("ssMode", false);
         } else if (!mode.exists()) { //create an alert dialog to have the user pick a mode
-            EthanDialog dialog = new EthanDialog();
+            ModeDialog dialog = new ModeDialog();
             dialog.setDialogText("Please Pick a Mode:", null);
             dialog.show(getFragmentManager(), "modeDialog");
             if (getIntent().getExtras() != null) {

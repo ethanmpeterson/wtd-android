@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-public class EthanDialog extends DialogFragment { // class will construct different dialogs to be used by the rest of the app
+public class ModeDialog extends DialogFragment { // class will construct different dialogs to be used by the rest of the app
 
     String dialogTitle = "Error: Set the Title Text!";
     String dialogMessage = "Error: Set the Dialog Message!";
