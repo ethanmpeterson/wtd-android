@@ -23,13 +23,4 @@ public class Global extends Application {
     int dayNum(int month, int day) {
         return schoolYear[month - 1][day];
     }
-    boolean b;
-    boolean dialogFinished(boolean a) {
-        a = b;
-        return a;
-    }
-
-    boolean modeSet() {
-        return b;
-    }
 }

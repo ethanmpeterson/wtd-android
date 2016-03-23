@@ -289,6 +289,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean("parentMode", userMode[0]);
                 editor.putBoolean("jsMode", userMode[1]);
                 editor.putBoolean("ssMode", userMode[2]);
+                editor.commit();
             }
         }
     }

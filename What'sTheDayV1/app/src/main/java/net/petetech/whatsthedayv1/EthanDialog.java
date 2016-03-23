@@ -13,7 +13,7 @@ public class EthanDialog extends DialogFragment { // class will construct differ
 
     String dialogTitle = "Error: Set the Title Text!";
     String dialogMessage = "Error: Set the Dialog Message!";
-
+    Global g = new Global();
 
     boolean parentMode = false;
     boolean ssMode = false;
