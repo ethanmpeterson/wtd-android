@@ -275,12 +275,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void modeCheck() {
-        SharedPreferences m = getSharedPreferences("setupParams", Context.MODE_PRIVATE);
+        SharedPreferences m = getSharedPreferences("setupParams", Context.MODE_WORLD_WRITEABLE);
         if (mode.exists()) {
+            modeAvailable = true;
             userMode[0] = m.getBoolean("parentMode", false);
             userMode[1] = m.getBoolean("jsMode", false);
             userMode[2] = m.getBoolean("ssMode", false);
         } else if (!mode.exists()) { //create an alert dialog to have the user pick a mode
+            modeAvailable = false;
             ModeDialog dialog = new ModeDialog();
             dialog.setDialogText("Please Pick a Mode:", null);
             dialog.show(getFragmentManager(), "modeDialog");

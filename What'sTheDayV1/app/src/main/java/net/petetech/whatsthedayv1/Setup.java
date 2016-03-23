@@ -35,7 +35,7 @@ public class Setup extends AppCompatActivity {
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences setupParams = getSharedPreferences("setupParams", Context.MODE_PRIVATE); //set up shared prefs file to store selections
+                SharedPreferences setupParams = getSharedPreferences("setupParams", Context.MODE_WORLD_WRITEABLE); //set up shared prefs file to store selections
                 SharedPreferences.Editor edit = setupParams.edit();
                 if (ssStudent) {
                     startActivity(setDay);
