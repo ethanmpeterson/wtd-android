@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -66,7 +67,11 @@ public class EthanDialog extends DialogFragment { // class will construct differ
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // set the local mode booleans to equal the ones in xml
-
+                Intent main = new Intent(getActivity(), MainActivity.class);
+                main.putExtra("parentMode", parentMode);
+                main.putExtra("jsMode", jsMode);
+                main.putExtra("ssMode", ssMode);
+                startActivity(main);
             }
         });
 

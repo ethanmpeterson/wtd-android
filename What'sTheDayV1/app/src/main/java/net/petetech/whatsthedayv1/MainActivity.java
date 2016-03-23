@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         modeCheck();
+        if (getIntent().getExtras() != null) {
+            userMode[0] = getIntent().getExtras().getBoolean("parentMode");
+            userMode[1] = getIntent().getExtras().getBoolean("jsMode");
+            userMode[2] = getIntent().getExtras().getBoolean("ssMode");
+        }
         setTitle("What's The Day?");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -269,13 +274,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void modeCheck() {
+        SharedPreferences m = getSharedPreferences("setupParams", Context.MODE_PRIVATE);
         if (mode.exists()) {
-            SharedPreferences m = getSharedPreferences("setupParams", Context.MODE_PRIVATE);
             userMode[0] = m.getBoolean("parentMode", false);
             userMode[1] = m.getBoolean("jsMode", false);
             userMode[2] = m.getBoolean("ssMode", false);
         } else if (!mode.exists()) { //create an alert dialog to have the user pick a mode
-
+            EthanDialog dialog = new EthanDialog();
+            dialog.setDialogText("Please Pick a Mode:", null);
+            dialog.show(getFragmentManager(), "modeDialog");
+            if (getIntent().getExtras() != null) {
+                SharedPreferences.Editor editor = m.edit();
+                editor.putBoolean("parentMode", userMode[0]);
+                editor.putBoolean("jsMode", userMode[1]);
+                editor.putBoolean("ssMode", userMode[2]);
+            }
         }
     }
 
