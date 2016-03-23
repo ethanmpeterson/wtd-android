@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefCheck();
-        if (!prefsAvailable) {
-            Intent setup = new Intent(this, Setup.class);
-            startActivity(setup);
-        }
+//        if (!prefsAvailable) {
+//            Intent setup = new Intent(this, Setup.class);
+//            startActivity(setup);
+//        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         modeCheck();
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             userMode[1] = getIntent().getExtras().getBoolean("jsMode");
             userMode[2] = getIntent().getExtras().getBoolean("ssMode");
         }
+        modeCheck();
         setTitle("What's The Day?");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
