@@ -16,7 +16,6 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.io.File;
 import java.util.Calendar;
 
@@ -152,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
         if (!prefsAvailable) {
             warning.setText("WARNING:"); // display warning if the user has not set their own schedule
             warningText.setText("This is the default schedule! Please set your own schedule in the settings menu");
+            // draw the dialog
+            ScheduleDialog scheduleDialog = new ScheduleDialog();
+            scheduleDialog.show(getFragmentManager(), "schedule");
         } else if (prefsAvailable) {
             warning.setText(null); // remove text if the schedule is set
             warningText.setText(null);
