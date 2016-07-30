@@ -43,9 +43,11 @@ public class Setup extends AppCompatActivity {
                 } else if (jsStudent) {
                     // start junior school setup activity here
                     edit.putBoolean("jsMode", true);
+                    Toast.makeText(Setup.this, "Junior School Setup Not Implemented", Toast.LENGTH_LONG).show();
                 } else if (parent) {
                     // start parent setup
                     edit.putBoolean("parentMode", true);
+                    Toast.makeText(Setup.this, "Parent Mode Not Implemented", Toast.LENGTH_LONG).show();
                 } else if (nothingChecked) {
                     Toast.makeText(Setup.this, "Please Pick Which School You Are In", Toast.LENGTH_LONG).show();
                 }
